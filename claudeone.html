@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bhasha Bandhu | Ministry of Legal Affairs</title>
+    <link rel="stylesheet" href="claudeone.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+   
+    <!-- Google Translate API Script -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/google-translate-api-browser/dist/index.min.js"></script>
+</head>
+<body>
+    <!-- Top Bar -->
+    <div class="topbar">
+        <div class="container">
+            <div class="left">
+                <img src="https://www.mha.gov.in/themes/custom/mhanew/images/emblem-dark.png" alt="Government of India" class="emblem">
+                <span class="govt-title">Government of India</span>
+            </div>
+            <div class="right">
+                <div class="language-selector">
+                    <label for="language">Select Language:</label>
+                    <select id="language" onchange="changeLanguage()">
+                        <option value="en">English</option>
+                        <option value="hi">Hindi</option>
+                        <option value="bn">Bengali</option>
+                        <option value="ta">Tamil</option>
+                        <option value="te">Telugu</option>
+                        <option value="mr">Marathi</option>
+                        <option value="gu">Gujarati</option>
+                        <option value="kn">Kannada</option>
+                        <option value="ml">Malayalam</option>
+                        <option value="pa">Punjabi</option>
+                        <option value="or">Odia</option>
+                        <option value="ur">Urdu</option>
+                        <option value="as">Assamese</option>
+                        <option value="ne">Nepali</option>
+                        <option value="sd">Sindhi</option>
+                        <option value="sa">Sanskrit</option>
+                        <option value="kok">Konkani</option>
+                        <option value="mni">Manipuri</option>
+                        <option value="doi">Dogri</option>
+                        <option value="brx">Bodo</option>
+                        <option value="sat">Santali</option>
+                        <option value="ks">Kashmiri</option>
+                        <option value="mai">Maithili</option>
+                    </select>
+                </div>
+                <a href="#"><i class="fas fa-envelope"></i> Email</a>
+                <a href="#"><i class="fas fa-phone"></i> Contact</a>
+                <a href="#"><i class="fas fa-search"></i> Search</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Rest of your HTML content remains the same -->
+
+    <!-- Translation Container -->
+    <div id="translated-content">
+        <!-- All your existing content will be translated here -->
+    </div>
+
+    <script>
+        // Google Translate API Key
+        const apiKey = 'YOUR_GOOGLE_TRANSLATE_API_KEY';
+
+        // Function to change language
+        function changeLanguage() {
+            const selectedLanguage = document.getElementById('language').value;
+            const textToTranslate = document.body.innerText;
+
+            fetch(`https://translation.googleapis.com/language/translate/v2?key=${apiKey}`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    q: textToTranslate,
+                    target: selectedLanguage,
+                }),
+            })
+            .then(response => response.json())
+            .then(data => {
+                const translatedText = data.data.translations[0].translatedText;
+                document.getElementById('translated-content').innerHTML = translatedText;
+            })
+            .catch(error => console.error('Error translating text:', error));
+        }
+    </script>
+
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <div class="logo">
+                <h1>Bhasha Bandhu</h1>
+                <p>Ministry of Legal Affairs</p>
+            </div>
+            <div class="header-right">
+                <button class="login-btn">Login</button>
+                <button class="signup-btn">Sign Up</button>
+            </div>
+        </div>
+    </header>
+    
+    <!-- Navigation -->
+    <nav>
+        <div class="container">
+            <div class="dropdown">
+                <a href="#">Home</a>
+            </div>
+            
+            <div class="dropdown">
+                <a href="#" class="dropbtn">About Us</a>
+                <div class="dropdown-content">
+                    <a href="#">Vision & Mission</a>
+                    <a href="#">Organization Structure</a>
+                    <a href="#">Ministers Profile</a>
+                    <a href="#">History</a>
+                </div>
+            </div>
+            
+            <div class="dropdown">
+                <a href="#" class="dropbtn">Legal Resources</a>
+                <div class="dropdown-content">
+                    <a href="#">Constitution</a>
+                    <a href="#">Acts & Laws</a>
+                    <a href="#">Court Judgments</a>
+                    <a href="#">Legal Documents</a>
+                    <a href="#">Circulars & Notifications</a>
+                </div>
+            </div>
+            
+            <div class="dropdown">
+                <a href="#" class="dropbtn">Interactive Learning</a>
+                <div class="dropdown-content">
+                    <a href="#">Video Tutorials</a>
+                    <a href="#">Case Studies</a>
+                    <a href="#">Legal Scenarios</a>
+                    <a href="#">Learning Modules</a>
+                </div>
+            </div>
+            
+            <div class="dropdown">
+                <a href="#" class="dropbtn">Quizzes</a>
+                <div class="dropdown-content">
+                    <a href="#">Basic Rights</a>
+                    <a href="#">Consumer Protection</a>
+                    <a href="#">Criminal Law</a>
+                    <a href="#">Civil Law</a>
+                </div>
+            </div>
+            
+            <div class="dropdown">
+                <a href="#" class="dropbtn">Legal Aid</a>
+                <div class="dropdown-content">
+                    <a href="#">Find a Lawyer</a>
+                    <a href="#">Free Legal Services</a>
+                    <a href="#">Legal Clinics</a>
+                    <a href="#">How to Apply</a>
+                </div>
+            </div>
+            
+            <div class="dropdown">
+                <a href="#" class="dropbtn">Contact</a>
+                <div class="dropdown-content">
+                    <a href="#">Help Desk</a>
+                    <a href="#">Feedback</a>
+                    <a href="#">Report Issues</a>
+                    <a href="#">Suggestions</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+    
+    <!-- Slideshow -->
+    <div class="slideshow-container">
+        <div class="slideshow">
+            <img src="https://cbpssubscriber.mygov.in/assets/uploads/juGajmc1gOVBUtt5?12" alt="Slide 1">
+            <img src="https://legalaffairs.gov.in/sites/default/files/styles/home_silder_image/public/banner1_1.jpg?itok=ktUgqV74" alt="Slide 2">
+            <img src="https://legalaffairs.gov.in/sites/default/files/styles/home_silder_image/public/ValedictorySession.jpg?itok=8u09HDIN" alt="Slide 3">
+            <img src="https://legalaffairs.gov.in/sites/default/files/styles/home_silder_image/public/IntegrityPledgeBanner2.jpg?itok=5YNZjQej" alt="Slide 4">
+            <img src="https://legalaffairs.gov.in/sites/default/files/styles/home_silder_image/public/InauguralSession.jpg?itok=I4L236SH" alt="Slide 5">
+            <img src="https://legalaffairs.gov.in/sites/default/files/styles/home_silder_image/public/ParikshaPeCharchaBanner.jpg?itok=r8N8673t" alt="Slide 6">
+        </div>
+        <div class="slideshow-dots">
+            <span class="dot active"></span>
+            <span class="dot"></span>
+            <span class="dot"></span>
+            <span class="dot"></span>
+            <span class="dot"></span>
+            <span class="dot"></span>
+        </div>
+    </div>
+    
+    <!-- Announcements Section -->
+    <section class="announcements">
+        <div class="container">
+            <div class="announcement-header">
+                <h2>Latest Announcements</h2>
+                <a href="#" class="view-all">View All</a>
+            </div>
+            <div class="announcement-ticker">
+                <marquee behavior="scroll" direction="left" onmouseover="this.stop();" onmouseout="this.start();">
+                    <a href="#">New Legal Aid Centers opening in 10 states - Registration open now!</a> &bull;
+                    <a href="#">National Legal Awareness Day Celebrations on 15th March 2025</a> &bull;
+                    <a href="#">Updates to Consumer Protection Act - Click to view changes</a> &bull;
+                    <a href="#">Free Legal Consultation Month - Schedule your appointment today</a>
+                </marquee>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Main Content -->
+    <main>
+        <div class="container">
+            <div class="content-grid">
+                <!-- Left Column -->
+                <div class="main-content">
+                    <section class="intro">
+                        <h2>Empowering Citizens with Legal Knowledge</h2>
+                        <p>The Bhasha Bandhu initiative aims to make legal resources accessible to every citizen in their preferred language. By bridging the language gap, we ensure that legal information is comprehensible and empowering for all.</p>
+                        <div class="info-cards">
+                            <div class="info-card">
+                                <div class="icon"><i class="fas fa-balance-scale"></i></div>
+                                <h3>Legal Resources</h3>
+                                <p>Explore laws, rights, and government policies translated into multiple languages.</p>
+                                <a href="#" class="learn-more">Learn More</a>
+                            </div>
+                            <div class="info-card">
+                                <div class="icon"><i class="fas fa-book-open"></i></div>
+                                <h3>Interactive Learning</h3>
+                                <p>Engage with quizzes and modules tailored to different user needs and language preferences.</p>
+                                <a href="#" class="learn-more">Learn More</a>
+                            </div>
+                            <div class="info-card">
+                                <div class="icon"><i class="fas fa-hands-helping"></i></div>
+                                <h3>Legal Aid</h3>
+                                <p>Access free legal assistance and find resources in your language.</p>
+                                <a href="#" class="learn-more">Learn More</a>
+                            </div>
+                        </div>
+                    </section>
+                    
+                    <section class="featured-services">
+                        <h2>Featured Services</h2>
+                        <div class="services-grid">
+                            <div class="service-card">
+                                <img src="https://www.translate-englishto.com/wp-content/uploads/2019/07/document-translation-services.jpg" alt="Document Translation Service">
+                                <h3>Document Translation</h3>
+                                <p>Get legal documents translated into multiple regional languages.</p>
+                                <a href="#" class="service-btn">Access Service</a>
+                            </div>
+                            <div class="service-card">
+                                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSUOZ9Hqxv0OHiHymj0zpCk43NdaUPb32K5jQ&s" alt="Free Legal Aid">
+                                <h3>Free Legal Aid</h3>
+                                <p>Find lawyers who can assist you in your preferred language.</p>
+                                <a href="#" class="service-btn">Access Service</a>
+                            </div>
+                            <div class="service-card">
+                                <img src="https://5.imimg.com/data5/SELLER/Default/2023/7/327277570/VP/EX/IL/15592060/japanese-interpreter-in-pune-500x500.png" alt="Interpreter Services">
+                                <h3>Interpreter Services</h3>
+                                <p>Get real-time interpretation for court proceedings and legal consultations.</p>
+                                <a href="#" class="service-btn">Access Service</a>
+                            </div>
+                        </div>
+                    </section>
+                </div>
+                
+                <!-- Right Column -->
+                <div class="sidebar">
+                    <div class="sidebar-widget quick-links">
+                        <h3>Quick Links</h3>
+                        <ul>
+                            <li><a href="#"><i class="fas fa-file-alt"></i> Forms & Applications</a></li>
+                            <li><a href="#"><i class="fas fa-calendar-alt"></i> Important Dates</a></li>
+                            <li><a href="#"><i class="fas fa-download"></i> Downloads</a></li>
+                            <li><a href="#"><i class="fas fa-chart-line"></i> Statistics</a></li>
+                            <li><a href="#"><i class="fas fa-question-circle"></i> FAQs</a></li>
+                        </ul>
+                    </div>
+                    
+                    <div class="sidebar-widget">
+                        <h3>Legal Quiz</h3>
+                        <div class="quiz-card">
+                            <h4>Basic Legal Rights</h4>
+                            <p>Test your knowledge of fundamental legal rights.</p>
+                            <button onclick="startQuiz()" class="quiz-btn">Start Quiz</button>
+                        </div>
+                    </div>
+                    
+                    <div class="sidebar-widget events">
+                        <h3>Upcoming Events</h3>
+                        <div class="event">
+                            <div class="event-date">
+                                <span class="day">15</span>
+                                <span class="month">MAR</span>
+                            </div>
+                            <div class="event-info">
+                                <h4>National Legal Awareness Day</h4>
+                                <p>Nationwide celebrations and workshops</p>
+                                <a href="#" class="event-link">View Details</a>
+                            </div>
+                        </div>
+                        <div class="event">
+                            <div class="event-date">
+                                <span class="day">22</span>
+                                <span class="month">APR</span>
+                            </div>
+                            <div class="event-info">
+                                <h4>Legal Aid Seminar</h4>
+                                <p>Free consultation and awareness program</p>
+                                <a href="#" class="event-link">View Details</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+    
+    <!-- Media Gallery Section -->
+    <section class="media-gallery">
+        <div class="container">
+            <h2>Media Gallery</h2>
+            <div class="gallery-tabs">
+                <button class="gallery-tab active" data-tab="photos">Photos</button>
+                <button class="gallery-tab" data-tab="videos">Videos</button>
+                <button class="gallery-tab" data-tab="infographics">Infographics</button>
+            </div>
+            <div class="gallery-content">
+                <div class="gallery-grid active" id="photos-grid">
+                    <div class="gallery-item"><img src="https://legalaffairs.gov.in/sites/default/files/styles/gallery_thumbnail/public/04_0.jpg?itok=ZptHi4SN" alt="Legal Workshop"></div>
+                    <div class="gallery-item"><img src="https://legalaffairs.gov.in/sites/default/files/styles/gallery_thumbnail/public/07_0.jpg?itok=zEQGVADL" alt="Conference"></div>
+                    <div class="gallery-item"><img src="https://legalaffairs.gov.in/sites/default/files/styles/gallery_thumbnail/public/02_0.jpg?itok=gX2LWwCt" alt="Legal Awareness Program"></div>
+                    <div class="gallery-item"><img src="https://legalaffairs.gov.in/sites/default/files/styles/gallery_thumbnail/public/03_0.jpg?itok=T1sMb5-r" alt="Award Ceremony"></div>
+                </div>
+                <a href="#" class="view-more">View More</a>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Footer -->
+    <footer>
+        <div class="footer-top">
+            <div class="container">
+                <div class="footer-grid">
+                    <div class="footer-column">
+                        <h3>About Bhasha Bandhu</h3>
+                        <p>Bhasha Bandhu is an initiative by the Ministry of Legal Affairs to make legal resources accessible in multiple languages across India.</p>
+                        <div class="social-icons">
+                            <a href="#"><i class="fab fa-facebook-f"></i></a>
+                            <a href="#"><i class="fab fa-twitter"></i></a>
+                            <a href="#"><i class="fab fa-youtube"></i></a>
+                            <a href="#"><i class="fab fa-instagram"></i></a>
+                        </div>
+                    </div>
+                    <div class="footer-column">
+                        <h3>Important Links</h3>
+                        <ul>
+                            <li><a href="#">National Portal of India</a></li>
+                            <li><a href="#">Supreme Court of India</a></li>
+                            <li><a href="#">Ministry of Law & Justice</a></li>
+                            <li><a href="#">Legal Services Authority</a></li>
+                            <li><a href="#">Right to Information</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-column">
+                        <h3>Resources</h3>
+                        <ul>
+                            <li><a href="#">Constitution of India</a></li>
+                            <li><a href="#">Acts & Regulations</a></li>
+                            <li><a href="#">Rules & Orders</a></li>
+                            <li><a href="#">Judgments & Decisions</a></li>
+                            <li><a href="#">Publications</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-column">
+                        <h3>Contact Us</h3>
+                        <address>
+                            <p><i class="fas fa-map-marker-alt"></i> 4th Floor, Shastri Bhawan, New Delhi - 110001</p>
+                            <p><i class="fas fa-phone"></i> +91-11-23384617</p>
+                            <p><i class="fas fa-envelope"></i> info@bhashabandhu.gov.in</p>
+                        </address>
+                        <a href="#" class="contact-btn">Send us a message</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <div class="container">
+               
+                <ul class="footer-links">
+                    <li><a href="#">Website Policy</a></li>
+                    <li><a href="#">Terms & Conditions</a></li>
+                    <li><a href="#">Privacy Policy</a></li>
+                    <li><a href="#">Disclaimer</a></li>
+                    <li><a href="#">Help</a></li>
+                </ul>
+                <p>&copy; 2025 Bhasha Bandhu, Ministry of Legal Affairs. All Rights Reserved</p>
+            </div>
+        </div>
+    </footer>
+    
+    <!-- Chatbot -->
+    <button id="chat-toggle"><i class="fas fa-comments"></i> Legal Assistant</button>
+    
+    <div id="chatbox" class="hidden">
+        <div class="chat-header">
+            <h3><i class="fas fa-balance-scale"></i> Legal Chatbot</h3>
+            <button onclick="toggleChat()"><i class="fas fa-times"></i></button>
+        </div>
+        <div class="chat-content" id="chat-content"></div>
+        <div class="chat-input">
+            <input type="text" id="user-input" placeholder="Ask a question...">
+            <button onclick="sendMessage()"><i class="fas fa-paper-plane"></i></button>
+        </div>
+    </div>
+    
+    <script src="claudeone.js"></script>
+</body>
+</html>
